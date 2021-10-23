@@ -3,25 +3,42 @@ const axios = require('axios')
 const app = express()
 const PORT = 3000
 
+/*
+    Function to get data from server
+*/
+var values;
 function get_data(){
-    axios.get('https://services-eu1.arcgis.com/zk7YlClTgerl62BY/arcgis/rest/services/global_corona_actual_widok3/FeatureServer/0/query?f=json&where=1%3D1&outFields=*')
-    .then(response => {
-    if(response.status === 200) {
-        var obj = response.data.features[0].attributes
+    return axios.get('https://services-eu1.arcgis.com/zk7YlClTgerl62BY/arcgis/rest/services/global_corona_actual_widok3/FeatureServer/0/query?f=json&where=1%3D1&outFields=*').then(response => response)
+}
+
+/* 
+    Simple validation to determine if request is send correctly
+
+    TODO: add SetInterval to get_data() function (Probably 1 800 000 ms (30 minutes))
+*/
+get_data()
+.then(res => {
+    if(res.status === 200){
+        var obj = res.data.features[0].attributes
         delete obj.OBJECTID
-        return data = obj
+        values = obj
     }else{
-        return data = {
+        values = {
             error: true,
-            status: response.status
+            status: res.status
         }
     }
-    })
-}
+})
 
 app.get('/help', (req, res) => {
     res.json({
-        message: 'Welcome to the help route!'
+        message: 'Welcome to the help route!',
+    })
+});
+
+app.get('/data', (req, res) => {
+    res.json({
+        values
     })
 })
 
