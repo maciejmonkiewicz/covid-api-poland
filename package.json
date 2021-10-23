@@ -1,0 +1,28 @@
+{
+  "name": "covid-api-poland",
+  "version": "1.0.0",
+  "description": "Simple webscraper for covid-19 stats",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/juanmeister420/covid-api-poland.git"
+  },
+  "keywords": [
+    "covid",
+    "api"
+  ],
+  "author": "Maciej Monkiewicz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/juanmeister420/covid-api-poland/issues"
+  },
+  "homepage": "https://github.com/juanmeister420/covid-api-poland#readme",
+  "dependencies": {
+    "axios": "^0.23.0",
+    "cheerio": "^1.0.0-rc.10",
+    "express": "^4.17.1"
+  }
+}
