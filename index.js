@@ -13,22 +13,24 @@ function get_data(){
 
 /* 
     Simple validation to determine if request is send correctly
-
-    TODO: add SetInterval to get_data() function (Probably 1 800 000 ms (30 minutes))
 */
-get_data()
-.then(res => {
-    if(res.status === 200){
-        var obj = res.data.features[0].attributes
-        delete obj.OBJECTID
-        values = obj
-    }else{
-        values = {
-            error: true,
-            status: res.status
+
+setInterval(function(){ 
+    get_data()
+    .then(res => {
+        if(res.status === 200){
+            var obj = res.data.features[0].attributes
+            delete obj.OBJECTID
+            values = obj
+        }else{
+            values = {
+                error: true,
+                status: res.status
+            }
         }
-    }
-})
+    })
+}, 1800000); // 30 minutes
+
 
 app.get('/help', (req, res) => {
     res.json({
