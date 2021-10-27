@@ -21,7 +21,7 @@ setInterval(function(){
         if(res.status === 200){
             var obj = res.data.features[0].attributes
             delete obj.OBJECTID
-            values = obj
+            values = JSON.parse(JSON.stringify(obj)) // Parsing response to JSON object
         }else{
             values = {
                 error: true,
@@ -39,6 +39,12 @@ app.get('/help', (req, res) => {
 });
 
 app.get('/data', (req, res) => {
+    // Getting url queries:
+    var show = req.query.show;
+    var only_values = req.query.only_values;
+    var from_date = req.query.from_date;
+    var to_date = req.query.to_date;
+
     res.json({
         values
     })
