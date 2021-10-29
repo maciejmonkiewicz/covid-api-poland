@@ -36,7 +36,7 @@
 }
 ```
 
-### Todo:
+# Todo:
 - Parse URL queries, and create simple validation
 - Ratelimit
 - Add query parameter to get stats on specific date
